@@ -14,8 +14,12 @@ CPython Runtime (RCPR) from a Manylinux Docker image.
   `extract_manylinux/bin/` (or alternativelly under `$HOME/.local/bin`). Note
   that we used version `0.14.3` during our tests.
 
-- An extracted Manylinux image. For instance, using `docker` one can produce a
-  tarball of an aarch64 image, as
+
+## Usage
+
+- Manylinux image(s) must first be exported to a local folder, for instance
+  using the [download.py](examples/download.py) script. Alternatively, using
+  `docker` one can produce a tarball of an image, for instance as
 
   ```bash
   docker export $(docker create quay.io/pypa/manylinux2014_aarch64) \
@@ -25,13 +29,10 @@ CPython Runtime (RCPR) from a Manylinux Docker image.
   The tarball should then be extracted to a local folder (`images/2014/aarch64`
   during our tests).
 
-
-## Usage
-
-The [Extractor](extract_manylinux/extract.py#L50) class let us produce a RCPR
-from the extracted Manylinux image (providing a valid tag within the images,
-e.g. `cp311-cp311`). See, the [test.py](scripts/test.py) script for an example
-of usage.
+- The [Extractor](extract_manylinux/extract.py#L50) class let us produce a RCPR
+  from the extracted Manylinux image (providing a valid tag within the images,
+  e.g. `cp311-cp311`). See, the [extract.py](examples/extract.py) script for an
+  example of usage.
 
 ## Result
 
