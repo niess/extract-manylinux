@@ -130,6 +130,8 @@ class Extractor:
         # Set patchelf, if not provided.
         if self.patchelf is None:
             paths = (
+                # Rocky linux installs 'patchelf' into /bin
+                Path('/bin'),
                 Path(__file__).parent / 'bin',
                 Path.home() / '.local/bin'
             )
@@ -138,7 +140,7 @@ class Extractor:
                 if patchelf.exists():
                     break
             else:
-                raise NotImplementedError()
+                raise FileNotFoundError(f"'patchelf' not found in any of: {[str(p) for p in paths]}")
             object.__setattr__(self, 'patchelf', patchelf)
         else:
             assert(self.patchelf.exists())
